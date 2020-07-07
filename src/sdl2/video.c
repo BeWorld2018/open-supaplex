@@ -90,13 +90,26 @@ void initializeVideo(uint8_t fastMode)
 
     gRenderer = SDL_CreateRenderer(gWindow, -1, rendererFlags);
 
+	#ifdef __MORPHOS__
+	
+    if (gRenderer == NULL)
+    {
+	    gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_SOFTWARE);
+	    if (gRenderer == NULL)
+		{
+			spLogInfo("Could not create a renderer: %s", SDL_GetError());
+			destroyVideo();
+			exit(1);
+		}
+     }
+	#else
     if (gRenderer == NULL)
     {
         spLogInfo("Could not create a renderer: %s", SDL_GetError());
         destroyVideo();
         exit(1);
     }
-
+	#endif
     Uint32 format = SDL_PIXELFORMAT_RGB24;
 
     // HACK: this is needed for my crappy SDL2 implementation (https://github.com/sergiou87/SDL2/commit/962e4e565562c2cd70b877f3d697ad2084d9405b)

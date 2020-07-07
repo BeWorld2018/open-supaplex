@@ -56,6 +56,12 @@ PSP_HEAP_SIZE_KB(-1024);
 // title1DataBuffer -> A000:4DAC - A000:CAAC
 // title2DataBuffer -> 0x4DD4 - 0xCAD4
 
+#ifdef __MORPHOS__
+unsigned long __stack = 1000000;
+static const char *version __attribute__((used)) = "$VER: OpenSupaplex " VERSION_STRING " (07.07.2020) port by BeWorld";
+#endif
+
+
 // maps are 58 x 22 tiles
 
 typedef enum {

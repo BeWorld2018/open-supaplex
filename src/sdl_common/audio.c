@@ -88,7 +88,7 @@ static const char *kBaseAudioFolder = "audio";
 // In macOS I was able to set it to 512, but that caused a lot of issues playing music on Nintendo Switch.
 // If it ever supports WASM, that needs a power of 2 as buffer size.
 //
-#if defined(__SWITCH__) || defined(__WIIU__) || defined(__WII__) || (defined(_3DS) && NEW3DS)
+#if defined(__MORPHOS__) ||defined(__SWITCH__) || defined(__WIIU__) || defined(__WII__) || (defined(_3DS) && NEW3DS)
 const int kAudioBufferSize = 1024;
 #elif defined(_3DS) && NEW3DS
 const int kAudioBufferSize = 768;

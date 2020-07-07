@@ -21,6 +21,7 @@
 
 uint8_t readTouchScreen(float *x, float *y)
 {
+	#ifndef __MORPHOS__
     if (SDL_GetNumTouchDevices() == 0)
     {
         return 0;
@@ -39,6 +40,6 @@ uint8_t readTouchScreen(float *x, float *y)
 
         return 1;
     }
-
+	#endif
     return 0;
 }
